@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NetMarket : équipement MikroTik et techniciens réseau</title>
+  <meta name="description" content="La marketplace de l'équipement réseau MikroTik au Burkina Faso et en Afrique de l'Ouest. Vendeurs vérifiés, techniciens certifiés, contact direct sur WhatsApp.">
+
+  <!-- Polices Google : Plus Jakarta Sans (texte), IBM Plex Mono (détails techniques)
+       et Material Symbols (icônes, seulement celles utilisées pour alléger) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&icon_names=arrow_forward,bolt,build,cable,call,cell_tower,chat,close,expand_more,handshake,hub,lan,location_on,menu,payments,person_search,router,school,search,settings_input_antenna,storefront,verified,wifi&display=block" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- defer : le script se lance une fois le HTML entièrement chargé -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ========== Bandeau du haut ========== -->
+<div class="topbar">
+  <span><span class="icon">verified</span>Vendeurs et techniciens vérifiés</span>
+  <span><span class="icon">payments</span>Orange Money · Moov Money</span>
+</div>
+
+<!-- ========== Navigation ========== -->
+<header class="header">
+  <div class="container header__bar">
+    <a href="#" class="logo">
+      <span class="logo__mark"><span class="icon">hub</span></span>NetMarket
+    </a>
+
+    <!-- Version ordinateur (cachée sous 900px par le CSS) -->
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#">Équipements</a>
+      <a href="#">Techniciens</a>
+      <a href="#">Vendre</a>
+      <a href="#comment">Comment ça marche</a>
+    </nav>
+    <div class="header__actions">
+      <a href="#" class="header__login">Se connecter</a>
+      <a href="#" class="btn btn--accent header__cta">Publier une annonce</a>
+    </div>
+
+    <!-- Version mobile (affichée sous 900px) -->
+    <div class="header__mobile">
+      <button class="icon-btn" aria-label="Rechercher" id="mobile-search">
+        <span class="icon">search</span>
+      </button>
+      <button class="icon-btn icon-btn--outlined" aria-label="Ouvrir le menu"
+              aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle">
+        <span class="icon">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu mobile : l'attribut hidden le cache, script.js l'enlève au clic -->
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Menu mobile" hidden>
+    <a href="#">Équipements</a>
+    <a href="#">Techniciens</a>
+    <a href="#">Vendre sur NetMarket</a>
+    <a href="#comment">Comment ça marche</a>
+    <div class="mobile-menu__buttons">
+      <a href="#" class="mobile-menu__login">Se connecter</a>
+      <a href="#" class="mobile-menu__signup">S'inscrire</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- ========== Hero ========== -->
+<section class="hero">
+  <!-- Dessin du réseau en arrière-plan (lignes + nœuds) -->
+  <svg class="hero__network" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="#3C6FD1" stroke-width="1" fill="none">
+      <line x1="80" y1="120" x2="300" y2="60"/><line x1="300" y1="60" x2="520" y2="150"/>
+      <line x1="80" y1="120" x2="180" y2="380"/><line x1="180" y1="380" x2="420" y2="470"/>
+      <line x1="520" y1="150" x2="420" y2="470"/><line x1="720" y1="80" x2="980" y2="140"/>
+      <line x1="980" y1="140" x2="1140" y2="40"/><line x1="980" y1="140" x2="1080" y2="420"/>
+      <line x1="1080" y1="420" x2="860" y2="580"/><line x1="520" y1="150" x2="720" y2="80"/>
+      <line x1="420" y1="470" x2="640" y2="600"/>
+    </g>
+    <g fill="#5B8DEF">
+      <circle cx="80" cy="120" r="3"/><circle cx="300" cy="60" r="3"/><circle cx="520" cy="150" r="4"/>
+      <circle cx="180" cy="380" r="3"/><circle cx="420" cy="470" r="4"/><circle cx="720" cy="80" r="3"/>
+      <circle cx="980" cy="140" r="4"/><circle cx="1140" cy="40" r="3"/><circle cx="1080" cy="420" r="3"/>
+      <circle cx="860" cy="580" r="3"/><circle cx="640" cy="600" r="3"/>
+    </g>
+  </svg>
+
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="hero__badge"><span class="hero__dot"></span>Équipement MikroTik · Burkina Faso et Afrique de l'Ouest</span>
+      <h1>Trouvez le bon équipement et le bon technicien, au même endroit.</h1>
+      <p class="hero__lead">Routeurs, switches, antennes et points d'accès vendus par des revendeurs vérifiés, et des techniciens pour les installer près de chez vous. Contact direct sur WhatsApp.</p>
+
+      <form class="search" id="search-form" role="search">
+        <label class="search__field">
+          <span class="icon">search</span>
+          <input type="search" id="search-input" placeholder="hAP ax², configuration hotspot, technicien…" aria-label="Que cherchez-vous ?">
+        </label>
+        <label class="search__city">
+          <span class="icon">location_on</span>
+          <select aria-label="Ville">
+            <option>Ouagadougou</option>
+            <option>Bobo-Dioulasso</option>
+            <option>Koudougou</option>
+            <option>Abidjan</option>
+            <option>Bamako</option>
+            <option>Toutes les villes</option>
+          </select>
+          <span class="icon">expand_more</span>
+        </label>
+        <button type="submit" class="btn search__submit">Rechercher</button>
+      </form>
+
+      <div class="hero__ctas">
+        <a href="#produits" class="btn btn--accent"><span class="icon">router</span>Trouver un équipement</a>
+        <a href="#techniciens" class="btn btn--ghost-light"><span class="icon">person_search</span>Trouver un technicien</a>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__photo">
+        <span class="mono">photo · technicien installant une antenne sur un toit, Ouagadougou</span>
+      </div>
+      <div class="float-card float-card--seller">
+        <span class="float-card__icon"><span class="icon">storefront</span></span>
+        <div class="float-card__text">
+          <span class="float-card__title">Faso Réseaux<span class="icon icon--filled">verified</span></span>
+          <span class="float-card__sub">Vendeur vérifié · 214 annonces</span>
+        </div>
+      </div>
+      <div class="float-card float-card--tech">
+        <span class="float-card__avatar"></span>
+        <div class="float-card__text">
+          <span class="float-card__title">Ousmane S. · MTCRE</span>
+          <span class="float-card__sub"><span class="star">★</span> 4,9 (87 avis) · répond en ~10 min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Bande de confiance ========== -->
+<div class="trust">
+  <div class="container trust__inner">
+    <div class="trust__item"><span class="icon">verified</span><div><div class="trust__title">Profils vérifiés</div><div class="trust__sub">Identité et boutique contrôlées</div></div></div>
+    <div class="trust__item"><span class="icon">chat</span><div><div class="trust__title">Contact direct</div><div class="trust__sub">WhatsApp ou appel, sans intermédiaire</div></div></div>
+    <div class="trust__item"><span class="icon">school</span><div><div class="trust__title">Techniciens certifiés</div><div class="trust__sub">MTCNA, MTCRE, MTCWE…</div></div></div>
+    <div class="trust__item"><span class="icon">payments</span><div><div class="trust__title">Prix en FCFA</div><div class="trust__sub">Orange Money et Moov Money acceptés</div></div></div>
+  </div>
+</div>
+
+<!-- ========== Trois rôles ========== -->
+<section class="container roles">
+  <div class="roles__head">
+    <span class="eyebrow">UNE PLATEFORME, TROIS RÔLES</span>
+    <h2>Ce que vous trouvez aujourd'hui dans les groupes WhatsApp, réuni et vérifié.</h2>
+  </div>
+  <div class="roles__grid">
+    <div class="card role">
+      <span class="role__icon"><span class="icon">storefront</span></span>
+      <h3>Vendeurs</h3>
+      <p>Revendeurs, boutiques informatiques et importateurs publient leur stock MikroTik et reçoivent les demandes directement sur leur téléphone.</p>
+      <a href="#" class="link-arrow">Vendre mes produits<span class="icon">arrow_forward</span></a>
+    </div>
+    <div class="card role">
+      <span class="role__icon"><span class="icon">build</span></span>
+      <h3>Techniciens</h3>
+      <p>Installateurs et configurateurs RouterOS présentent leurs services, leurs certifications et leurs réalisations, avec un tarif indicatif.</p>
+      <a href="#" class="link-arrow">Proposer mes services<span class="icon">arrow_forward</span></a>
+    </div>
+    <div class="card role role--featured">
+      <span class="role__icon"><span class="icon">search</span></span>
+      <h3>Clients</h3>
+      <p>Particuliers, PME, cybercafés, hôtels, écoles et petits FAI comparent les offres, choisissent un technicien et le contactent en un clic.</p>
+      <a href="#produits" class="btn btn--accent">Commencer ma recherche<span class="icon">arrow_forward</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Catégories ========== -->
+<section class="band">
+  <div class="container categories">
+    <div class="section-head">
+      <h2 class="section-title">Catégories</h2>
+      <a href="#" class="link-arrow">Tout le catalogue<span class="icon">arrow_forward</span></a>
+    </div>
+    <div class="categories__grid">
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">router</span></span><div><div class="category__label">Routeurs</div><div class="category__count">412 annonces</div></div></a>
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">lan</span></span><div><div class="category__label">Switches</div><div class="category__count">186 annonces</div></div></a>
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">wifi</span></span><div><div class="category__label">Points d'accès Wi-Fi</div><div class="category__count">264 annonces</div></div></a>
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">settings_input_antenna</span></span><div><div class="category__label">Antennes et liaisons</div><div class="category__count">231 annonces</div></div></a>
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">cell_tower</span></span><div><div class="category__label">Équipements WISP</div><div class="category__count">97 annonces</div></div></a>
+      <a href="#" class="card category"><span class="category__icon"><span class="icon">cable</span></span><div><div class="category__label">Accessoires</div><div class="category__count">358 annonces</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Produits récents ========== -->
+<section class="container products" id="produits">
+  <div class="section-head">
+    <div class="section-head__titles">
+      <span class="eyebrow">NOUVEAUTÉS</span>
+      <h2 class="section-title">Produits récents</h2>
+    </div>
+    <!-- Les onglets filtrent les produits (voir script.js) -->
+    <div class="tabs" role="tablist" aria-label="Filtrer par catégorie">
+      <button class="tab" role="tab" data-filter="all" aria-selected="true">Tous</button>
+      <button class="tab" role="tab" data-filter="router" aria-selected="false">Routeurs</button>
+      <button class="tab" role="tab" data-filter="switch" aria-selected="false">Switches</button>
+      <button class="tab" role="tab" data-filter="wifi" aria-selected="false">Wi-Fi</button>
+      <button class="tab" role="tab" data-filter="antenne" aria-selected="false">Antennes</button>
+    </div>
+  </div>
+  <!-- Vide au départ : script.js y insère les cartes produits -->
+  <div class="grid-products" id="products-grid"></div>
+</section>
+
+<!-- ========== Techniciens ========== -->
+<section class="container techs" id="techniciens">
+  <div class="section-head">
+    <div class="section-head__titles">
+      <span class="eyebrow">LES MIEUX NOTÉS</span>
+      <h2 class="section-title">Techniciens recommandés</h2>
+    </div>
+    <a href="#" class="link-arrow">Voir l'annuaire<span class="icon">arrow_forward</span></a>
+  </div>
+  <div class="grid-techs" id="techs-grid"></div>
+</section>
+
+<!-- ========== Comment ça marche ========== -->
+<section class="band" id="comment">
+  <div class="container steps">
+    <div class="section-head__titles">
+      <span class="eyebrow">COMMENT ÇA MARCHE</span>
+      <h2 class="section-title">Trois étapes, aucune commission cachée.</h2>
+    </div>
+    <div class="steps__grid">
+      <div class="card step">
+        <div class="step__top"><span class="step__num mono">1</span><span class="icon">search</span></div>
+        <h3>Cherchez</h3>
+        <p>Tapez un modèle, un service ou une ville. Filtrez par prix, état et disponibilité.</p>
+      </div>
+      <div class="card step">
+        <div class="step__top"><span class="step__num mono">2</span><span class="icon">chat</span></div>
+        <h3>Contactez</h3>
+        <p>Écrivez au vendeur ou au technicien sur WhatsApp, ou appelez-le directement depuis l'annonce.</p>
+      </div>
+      <div class="card step">
+        <div class="step__top"><span class="step__num mono">3</span><span class="icon">handshake</span></div>
+        <h3>Concluez</h3>
+        <p>Convenez du prix et de la livraison ou de l'intervention. Laissez ensuite un avis pour la communauté.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Chiffres et témoignages ========== -->
+<section class="container proof">
+  <div class="stats">
+    <div class="stat"><div class="stat__value">320+</div><div class="stat__label">Vendeurs</div><div class="stat__sub">dont 180 vérifiés</div></div>
+    <div class="stat"><div class="stat__value">140+</div><div class="stat__label">Techniciens</div><div class="stat__sub">dont 65 certifiés MikroTik</div></div>
+    <div class="stat"><div class="stat__value">18</div><div class="stat__label">Villes couvertes</div><div class="stat__sub">Burkina Faso, Mali, Côte d'Ivoire, Niger</div></div>
+  </div>
+
+  <h2 class="section-title">Ils nous font confiance</h2>
+  <div class="quotes">
+    <figure class="card quote">
+      <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+      <blockquote>« J'ai trouvé un hAP ax² à Ouaga et un technicien pour configurer le hotspot de mon cybercafé le même jour. »</blockquote>
+      <figcaption><span class="quote__avatar placeholder"></span><div><div class="quote__name">Salif Zongo</div><div class="quote__role">Gérant de cybercafé, Ouagadougou</div></div></figcaption>
+    </figure>
+    <figure class="card quote">
+      <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+      <blockquote>« Les demandes arrivent directement sur mon WhatsApp. Mes antennes partent plus vite qu'avec les groupes. »</blockquote>
+      <figcaption><span class="quote__avatar placeholder"></span><div><div class="quote__name">Awa Compaoré</div><div class="quote__role">Revendeuse, Sahel Connect</div></div></figcaption>
+    </figure>
+    <figure class="card quote">
+      <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+      <blockquote>« Grâce à mon profil et mes certifications, des hôtels de Bobo me contactent pour leurs réseaux Wi-Fi. »</blockquote>
+      <figcaption><span class="quote__avatar placeholder"></span><div><div class="quote__name">Aminata Traoré</div><div class="quote__role">Technicienne MTCWE, Bobo-Dioulasso</div></div></figcaption>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== Pied de page ========== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__cta">
+      <div class="footer__cta-text">
+        <div class="footer__cta-title">Vous vendez du matériel ou installez des réseaux ?</div>
+        <p>Inscription gratuite, annonce en ligne en 5 minutes.</p>
+      </div>
+      <a href="#" class="btn btn--accent">Créer mon compte<span class="icon">arrow_forward</span></a>
+    </div>
+
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <a href="#" class="logo"><span class="logo__mark"><span class="icon">hub</span></span>NetMarket</a>
+        <p>La marketplace de l'équipement réseau MikroTik au Burkina Faso et en Afrique de l'Ouest.</p>
+        <div class="footer__contact">
+          <span><span class="icon">chat</span>+226 70 00 00 00</span>
+          <span><span class="icon">location_on</span>Ouaga 2000, Ouagadougou</span>
+        </div>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Marketplace</div>
+        <a href="#">Routeurs</a><a href="#">Switches</a><a href="#">Points d'accès Wi-Fi</a><a href="#">Antennes et liaisons</a><a href="#">Équipements WISP</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Techniciens</div>
+        <a href="#">Annuaire</a><a href="#">Configuration RouterOS</a><a href="#">Hotspot et VPN</a><a href="#">Formation</a><a href="#">Proposer mes services</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Vendeurs</div>
+        <a href="#">Vendre sur NetMarket</a><a href="#">Espace vendeur</a><a href="#">Vérification du compte</a><a href="#">Tarifs</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Aide</div>
+        <a href="#">Centre d'aide</a><a href="#">Acheter en sécurité</a><a href="#">Signaler une annonce</a><a href="#">Nous contacter</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="footer__payments">
+        <span>Paiement mobile :</span>
+        <span class="pill">Orange Money</span>
+        <span class="pill">Moov Money</span>
+      </div>
+      <div class="footer__legal">
+        <a href="#">Conditions d'utilisation</a><a href="#">Confidentialité</a><span>© 2026 NetMarket</span>
+      </div>
+      <p class="footer__disclaimer">MikroTik et RouterOS sont des marques de leurs propriétaires respectifs. NetMarket est une place de marché indépendante, non affiliée à MikroTik.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
